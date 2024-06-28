@@ -1,0 +1,20 @@
+{
+  "name": "gradescope-web-autograder-artifact-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "author": "Timothy J. Aveni <me@timothyaveni.com> (https://timothyaveni.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "1.44",
+    "serve": "^14.2.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.13.0"
+  }
+}
