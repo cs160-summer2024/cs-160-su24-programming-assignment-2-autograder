@@ -220,7 +220,7 @@ test(
     await new Promise((resolve) => setTimeout(resolve, 5 * TIME_PER_BUBBLE));
 
     await ensureBubbleCount(page, {
-      atLeast: startCount - 1,
+      atLeast: Math.max(1, startCount - 1),
       atMost: startCount + 1,
     });
 
