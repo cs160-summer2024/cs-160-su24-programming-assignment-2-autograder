@@ -90,13 +90,13 @@ const getBubbleSnapshot = async (page: Page) => {
 };
 
 // only if the id is definitely there
-const getBubbleIdAssuming = async (bubble: Locator) => {
-  return bubble.evaluate((node) => {
+const getBubbleIdAssuming = async (page: Page, bubble: ElementHandle) => {
+  return page.evaluate((node) => {
     // @ts-ignore
     const bubbleMap = window.__autograder_bubbleMap;
 
     return bubbleMap.get(node) as number;
-  });
+  }, bubble);
 };
 
 const expectPageHasRemovedBubblesFromSnapshot = async (
@@ -247,11 +247,11 @@ test(
 
     const bubbles = await getBubbleSnapshot(page);
 
-    const bubble1 = page.locator(".shape-container > .circle").nth(1);
-    const bubble1Id = await getBubbleIdAssuming(bubble1);
+    const bubble1 = (await page.$$(".shape-container > .circle"))[1];
+    const bubble1Id = await getBubbleIdAssuming(page, bubble1);
 
-    const bubble2 = page.locator(".shape-container > .circle").nth(4);
-    const bubble2Id = await getBubbleIdAssuming(bubble2);
+    const bubble2 = (await page.$$(".shape-container > .circle"))[4];
+    const bubble2Id = await getBubbleIdAssuming(page, bubble2);
 
     await bubble1.click();
 
